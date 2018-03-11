@@ -66,11 +66,11 @@ def processRequest(req):
 def makeYqlQuery(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-	q = parameters.get("keyword")
-	datetime=parameters.get("date-time")
-	category=parameters.get("category")
+##	q = parameters.get("keyword")
+##	datetime=parameters.get("date-time")
+##	category=parameters.get("category")
 	sources=parameters.get("source")
-	sort=parameters.get("sort")
+##	sort=parameters.get("sort")
 	
 ##	if q is None:
 ##		return None
@@ -86,7 +86,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "sources="+sources+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
 def makeWebhookResult(data):
