@@ -67,11 +67,11 @@ def processRequest(req):
 def makeYqlQuery(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-##	q = parameters.get("keyword")
-##	datetime=parameters.get("date-time")
-##	category=parameters.get("category")
+	q = parameters.get("keyword")
+	datetime=parameters.get("date-time")
+	category=parameters.get("category")
 	source=parameters.get("source")
-##	sort=parameters.get("sort")
+	sort=parameters.get("sort")
 	
 ##	if q is None:
 ##		return None
@@ -91,7 +91,7 @@ def makeYqlQuery(req):
         
 
 def makeWebhookResult(data):
-	articles = data.get('articles')
+	articles = data.get[0]
 	if articles is None:
 		return {}
 
