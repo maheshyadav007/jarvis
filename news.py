@@ -88,16 +88,19 @@ def makeYqlQuery(req):
 	
 
 	return "sources="+bbc-news+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
-        
+		
 
 def makeWebhookResult(data):
-	articles = data.get[0]
+	articles = data[articles]
 	if articles is None:
 		return {}
 
-	description= articles.get('description')
-	if description is None:
+	desc= articles[0]
+	if desc is None:
 		return {}
+	description=desc['description']
+	if description is None:
+		return{}
 
 ##    channel = result.get('channel')
 ##    if channel is None:
