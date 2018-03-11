@@ -44,13 +44,13 @@ def webhook():
 
     res = json.dumps(res, indent=4)
     # print(res)
-    r = "heyy"#make_response(res)
+    r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
+    if req.get("result").get("action") != "news.search":
         return {}
     baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
