@@ -35,68 +35,68 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
+	req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+	print("Request:")
+	print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+	res = processRequest(req)
 
-    res = json.dumps(res, indent=4)
-    # print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+	res = json.dumps(res, indent=4)
+	# print(res)
+	r = make_response(res)
+	r.headers['Content-Type'] = 'application/json'
+	return r
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "news.search":
-        return {}
-    baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
-    yql_query = makeYqlQuery(req)
-    if yql_query is None:
-        return {}
-    yql_url = baseurl + urlencode({'q': yql_query})# + "&format=json"
-    result = urlopen(yql_url).read()
-    data = json.loads(result)
-    res = makeWebhookResult(data)
-    return res
+	if req.get("result").get("action") != "news.search":
+		return {}
+	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
+	yql_query = makeYqlQuery(req)
+	if yql_query is None:
+		return {}
+	yql_url = baseurl + urlencode({'q': yql_query})# + "&format=json"
+	result = urlopen(yql_url).read()
+	data = json.loads(result)
+	res = makeWebhookResult(data)
+	return res
 
 
 def makeYqlQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    q = parameters.get("keyword")
-    datetime=parameters.get("date-time")
-    category=parameters.get("category")
-    sources=parameters.get("source")
-    sort=parameters.get("sort")
-    
-    if q is None:
-        return None
-    if datetime is None:
-        return None
-    if category is None:
-        return None
-    if sources is None:
-        return None
-    if sort is None:
-        return None
+	result = req.get("result")
+	parameters = result.get("parameters")
+	q = parameters.get("keyword")
+	datetime=parameters.get("date-time")
+	category=parameters.get("category")
+	sources=parameters.get("source")
+	sort=parameters.get("sort")
+	
+##	if q is None:
+##		return None
+##	if datetime is None:
+##		return None
+##	if category is None:
+##		return None
+##	if sources is None:
+##		return None
+##	if sort is None:
+##		return None
 
 
-    
+	
 
-    return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
 def makeWebhookResult(data):
-    articles = data.get('articles')
-    if articles is None:
-        return {}
-
-    description= articles.get('description')
-    if description is None:
-        return {}
+##	articles = data.get('articles')
+##	if articles is None:
+##		return {}
+##
+##	description= articles.get('description')
+##	if description is None:
+##		return {}
 
 ##    channel = result.get('channel')
 ##    if channel is None:
@@ -112,26 +112,26 @@ def makeWebhookResult(data):
 ##    if condition is None:
 ##        return {}
 
-    # print(json.dumps(item, indent=4))
+	# print(json.dumps(item, indent=4))
 
-    speech = "Here is the news headlines: " #+ description
+	speech = "Here is the news headlines: " #+ description
 
-    print("Response:")
-    print(speech)
+	print("Response:")
+	print(speech)
 
-    return {
-        "speech": speech,
-        "displayText": speech,
-        "data":{
-        },
-        "contextOut": [],
-        "source": "webhook"
-    }
+	return {
+		"speech": speech,
+		"displayText": speech,
+		#"data":{
+		#},
+		#"contextOut": [],
+		"source": "webhook"
+	}
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+	port = int(os.getenv('PORT', 5000))
 
-    print("Starting app on port %d" % port)
+	print("Starting app on port %d" % port)
 
-    app.run(debug=False, port=port, host='0.0.0.0')
+	app.run(debug=False, port=port, host='0.0.0.0')
