@@ -54,9 +54,10 @@ def processRequest(req):
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
 	yql_query = makeYqlQuery(req)
+	print (yql_query)
 	if yql_query is None:
 		return {}
-	yql_url = baseurl + urlencode({'q': yql_query})# + "&format=json"
+	yql_url = baseurl + "yql_query"#urlencode({'q': yql_query})# + "&format=json"
 	result = urlopen(yql_url).read()
 	data = json.loads(result)
 	res = makeWebhookResult(data)
@@ -87,7 +88,7 @@ def makeYqlQuery(req):
 	
 
 	return "sources="+bbc-news+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
-
+        
 
 def makeWebhookResult(data):
 ##	articles = data.get('articles')
