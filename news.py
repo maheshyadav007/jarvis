@@ -91,13 +91,13 @@ def makeYqlQuery(req):
         
 
 def makeWebhookResult(data):
-##	articles = data.get('articles')
-##	if articles is None:
-##		return {}
-##
-##	description= articles.get('description')
-##	if description is None:
-##		return {}
+	articles = data.get('articles')
+	if articles is None:
+		return {}
+
+	description= articles.get('description')
+	if description is None:
+		return {}
 
 ##    channel = result.get('channel')
 ##    if channel is None:
