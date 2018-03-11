@@ -122,9 +122,10 @@ def makeWebhookResult(data):
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
-        # "contextOut": [],
-        "source": "apiai-news-webhook"
+        "data":{
+        },
+        "contextOut": [],
+        "source": "webhook"
     }
 
 
