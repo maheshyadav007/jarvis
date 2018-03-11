@@ -1,5 +1,5 @@
 # -*- coding:utf8 -*-
-# !/usr/bin/env python 
+#!/usr/bin/env python 
 # Copyright 2017 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = "heyyy"#processRequest(req)
+    res =processRequest(req)
 
     res = json.dumps(res, indent=4)
     # print(res)
