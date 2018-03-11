@@ -114,7 +114,7 @@ def makeWebhookResult(data):
 
     # print(json.dumps(item, indent=4))
 
-    speech = "Here is the news headlines: " + description
+    speech = "Here is the news headlines: " #+ description
 
     print("Response:")
     print(speech)
