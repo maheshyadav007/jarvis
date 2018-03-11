@@ -87,7 +87,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "sources="+bbc-ne+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "sources="+bbc-news+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 		
 
 def makeWebhookResult(data):
@@ -125,12 +125,13 @@ def makeWebhookResult(data):
 
 	return {
 		"speech": speech,
-		"displayText": speech,
+                "source": "webhook",
+		"displayText":speech}
 		#"data":{
 		#},
 		#"contextOut": [],
-		"source": "webhook"
-	}
+		
+	
 
 
 if __name__ == '__main__':
