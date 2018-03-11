@@ -54,10 +54,10 @@ def processRequest(req):
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
 	yql_query = makeYqlQuery(req)
-	print (yql_query)
+	#print (yql_query)
 	if yql_query is None:
 		return {}
-	yql_url = baseurl + "yql_query"#urlencode({'q': yql_query})# + "&format=json"
+	yql_url = baseurl + urlencode({'q': yql_query})# + "&format=json"
 	result = urlopen(yql_url).read()
 	data = json.loads(result)
 	res = makeWebhookResult(data)
@@ -91,16 +91,16 @@ def makeYqlQuery(req):
 		
 
 def makeWebhookResult(data):
-	articles = data[articles]
-	if articles is None:
-		return {}
-
-	desc= articles[0]
-	if desc is None:
-		return {}
-	description=desc['description']
-	if description is None:
-		return{}
+##	articles = data[articles]
+##	if articles is None:
+##		return {}
+##
+##	desc= articles[0]
+##	if desc is None:
+##		return {}
+##	description=desc['description']
+##	if description is None:
+##		return{}
 
 ##    channel = result.get('channel')
 ##    if channel is None:
@@ -118,7 +118,7 @@ def makeWebhookResult(data):
 
 	# print(json.dumps(item, indent=4))
 
-	speech = "Here is the news headlines: "+description
+	speech = "Here is the news headlines: "#+description
 
 	print("Response:")
 	print(speech)
