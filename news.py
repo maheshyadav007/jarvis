@@ -69,7 +69,7 @@ def makeYqlQuery(req):
 ##	q = parameters.get("keyword")
 ##	datetime=parameters.get("date-time")
 ##	category=parameters.get("category")
-	sources=parameters.get("source")
+	source=parameters.get("source")
 ##	sort=parameters.get("sort")
 	
 ##	if q is None:
@@ -86,7 +86,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "sources="+sources+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "sources="+bbc-news+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 
 
 def makeWebhookResult(data):
@@ -114,7 +114,7 @@ def makeWebhookResult(data):
 
 	# print(json.dumps(item, indent=4))
 
-	speech = "Here is the news headlines: " #+ description
+	speech = "Here is the news headlines: "+description
 
 	print("Response:")
 	print(speech)
