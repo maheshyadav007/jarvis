@@ -74,16 +74,16 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
-	result = req.get("result")
-	parameters = result.get("parameters")
-	q = parameters.get("keyword")
-	datetime=parameters.get("date-time")
-	category=parameters.get("category")
-	source=parameters.get("source")
-	sort=parameters.get("sort")
-	
-	if q & datetime & category & source & sort is None:
-		return None
+##	result = req.get("result")
+##	parameters = result.get("parameters")
+##	q = parameters.get("keyword")
+##	datetime=parameters.get("date-time")
+##	category=parameters.get("category")
+##	source=parameters.get("source")
+##	sort=parameters.get("sort")
+##	
+##	if q & datetime & category & source & sort is None:
+##		return None
 ##	if datetime is None:
 ##		return None
 ##	if category is None:
@@ -96,7 +96,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "sources=bbc-news"++#"q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 		
 
 def makeWebhookResult(data):
