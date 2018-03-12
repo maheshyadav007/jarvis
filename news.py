@@ -78,13 +78,13 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
-##	result = req.get("result")
-##	parameters = result.get("parameters")
-##	q = parameters.get("keyword")
-##	datetime=parameters.get("date-time")
-##	category=parameters.get("category")
-##	source=parameters.get("source")
-##	sort=parameters.get("sort")
+	result = req.get("result")
+	parameters = result.get("parameters")
+	q = parameters.get("keyword")
+	datetime=parameters.get("date-time")
+	category=parameters.get("category")
+	source=parameters.get("source")
+	sort=parameters.get("sort")
 ##	
 ##	if q & datetime & category & source & sort is None:
 ##		return None
