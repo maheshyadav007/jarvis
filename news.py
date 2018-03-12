@@ -57,8 +57,11 @@ def processRequest(req):
 	#print (yql_query)
 	if yql_query is None:
 		return {}
-	yql_url = baseurl + urlencode({'q': yql_query})# + "&format=json"
-	result = urlopen(yql_url).read()
+	yql_url = baseurl + yql_query#urlencode({'q': yql_query})# + "&format=json"
+##	result = urlopen(yql_url).read()
+	headers = {'Content-Type': 'application/json','Authorization': 'Bearer {0}'.format("e15bb246cdc445f1ab7761ad4e0b4599")}
+	
+	result = requests.get(yql_url,headers=headers).content.decode('utf-8')
 	data = json.loads(result)
 	res = makeWebhookResult(data)
 	return res
@@ -73,8 +76,8 @@ def makeYqlQuery(req):
 	source=parameters.get("source")
 	sort=parameters.get("sort")
 	
-##	if q is None:
-##		return None
+	if q & datetime & category & source & sort is None:
+		return None
 ##	if datetime is None:
 ##		return None
 ##	if category is None:
@@ -87,20 +90,32 @@ def makeYqlQuery(req):
 
 	
 
-	return "sources="+bbc-news+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#"q="+q+"&date-time="+datetime+"&category="+category+"sources="+sources+"&sort="+sort+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 		
 
 def makeWebhookResult(data):
-##	articles = data[articles]
-##	if articles is None:
-##		return {}
-##
-##	desc= articles[0]
-##	if desc is None:
-##		return {}
-##	description=desc['description']
-##	if description is None:
-##		return{}
+	article = data.get("articles")
+	if articles is None:
+		return {}
+
+	desc1= article[0]
+	if desc1 is None:
+		return {}
+	description1=desc1['description']
+	if description1 is None:
+		return{}
+	desc2= article[1]
+	if desc2 is None:
+		return {}
+	description2=desc2['description']
+	if description2 is None:
+		return{}
+	desc3= article[2]
+	if desc3 is None:
+		return {}
+	description3=desc3['description']
+	if description3 is None:
+		return{}
 
 ##    channel = result.get('channel')
 ##    if channel is None:
@@ -118,14 +133,14 @@ def makeWebhookResult(data):
 
 	# print(json.dumps(item, indent=4))
 
-	speech = "Here is the news headlines: "#+description
+	speech = "News headlines: "+description1+" "+description2+" "+description3
 
 	print("Response:")
 	print(speech)
 
 	return {
 		"speech": speech,
-                "source": "webhook",
+                "source": "newsai-webhook",
 		"displayText":speech}
 		#"data":{
 		#},
