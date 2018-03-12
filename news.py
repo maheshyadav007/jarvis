@@ -43,8 +43,18 @@ def webhook():
 	print(req)
 	#print(json.dumps(req, indent=4))
 	print("reqdsdfergf4wg4g56y56yh56h6555")
-	res = processRequest(req)
-	print(res)
+
+
+##	res = processRequest(req)
+##	print(res)
+##----------------------------
+	yql_url="https://newsapi.org/v2/top-headlines?sources=bbc-news"
+	headers = {'Content-Type': 'application/json','Authorization': 'Bearer {0}'.format("e15bb246cdc445f1ab7761ad4e0b4599")}
+	
+	result = requests.get(yql_url,headers=headers).content.decode('utf-8')
+	data = json.loads(result)
+	res = makeWebhookResult(data)
+##------------------------------------
 	res = json.dumps(res, indent=4)
 	
 	#res="{"ffe":"edee"}"
