@@ -95,7 +95,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+source+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 		
 
 def makeWebhookResult(data):
