@@ -39,11 +39,11 @@ def webhook():
 
 	print("Request:")
 	print(json.dumps(req, indent=4))
-
+        print("req")
 	res = processRequest(req)
-
+        print(res)
 	res = json.dumps(res, indent=4)
-	print(res)
+	
 	#res="{"ffe":"edee"}"
 	r = make_response(res)
 	r.headers['Content-Type'] = 'application/json'
@@ -60,6 +60,7 @@ def processRequest(req):
 		return {}
 	yql_url = baseurl + yql_query#urlencode({'q': yql_query})# + "&format=json"
 ##	result = urlopen(yql_url).read()
+	print(yql_url)
 	headers = {'Content-Type': 'application/json','Authorization': 'Bearer {0}'.format("e15bb246cdc445f1ab7761ad4e0b4599")}
 	
 	result = requests.get(yql_url,headers=headers).content.decode('utf-8')
