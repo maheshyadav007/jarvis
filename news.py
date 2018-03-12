@@ -58,7 +58,7 @@ def processRequest(req):
 	if req.get("result").get("action") != "news.search":
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
-	yql_query = makeYqlQuery(req)
+	yql_query = ""#makeYqlQuery(req)
 	#print (yql_query)
 	if yql_query is None:
 		return {}
