@@ -74,7 +74,7 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
-        print("makeyqlquery")
+	print("makeyqlquery")
 ##	result = req.get("result")
 ##	parameters = result.get("parameters")
 ##	q = parameters.get("keyword")
