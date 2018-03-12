@@ -43,18 +43,8 @@ def webhook():
 	print(req)
 	#print(json.dumps(req, indent=4))
 	print("reqdsdfergf4wg4g56y56yh56h6555")
-
-
-##	res = processRequest(req)
-##	print(res)
-##----------------------------
-	yql_url="https://newsapi.org/v2/top-headlines?sources=bbc-news"
-	headers = {'Content-Type': 'application/json','Authorization': 'Bearer {0}'.format("e15bb246cdc445f1ab7761ad4e0b4599")}
-	
-	result = requests.get(yql_url,headers=headers).content.decode('utf-8')
-	data = json.loads(result)
-	res = makeWebhookResult(data)
-##------------------------------------
+	res = processRequest(req)
+	print(res)
 	res = json.dumps(res, indent=4)
 	
 	#res="{"ffe":"edee"}"
@@ -68,7 +58,7 @@ def processRequest(req):
 	if req.get("result").get("action") != "news.search":
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
-	yql_query =makeYqlQuery(req)
+	yql_query = makeYqlQuery(req)
 	#print (yql_query)
 	if yql_query is None:
 		return {}
@@ -84,17 +74,16 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
-	print("makeyqlquery")
-##	result = req.get("result")
-##	parameters = result.get("parameters")
-##	q = parameters.get("keyword")
-##	datetime=parameters.get("date-time")
-##	category=parameters.get("category")
-##	source=parameters.get("source")
-##	sort=parameters.get("sort")
-##	
-##	if q & datetime & category & source & sort is None:
-##		return None
+	result = req.get("result")
+	parameters = result.get("parameters")
+	q = parameters.get("keyword")
+	datetime=parameters.get("date-time")
+	category=parameters.get("category")
+	source=parameters.get("source")
+	sort=parameters.get("sort")
+	
+	if q & datetime & category & source & sort is None:
+		return None
 ##	if datetime is None:
 ##		return None
 ##	if category is None:
@@ -107,7 +96,7 @@ def makeYqlQuery(req):
 
 	
 
-	return "sources=bbc-news"#++#"q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+	return "q="+q+"&date-time="+datetime+"&category="+category+"&sources="+sources+"&sort="+sort#+"&apiKey=e15bb246cdc445f1ab7761ad4e0b4599"#select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
 		
 
 def makeWebhookResult(data):
