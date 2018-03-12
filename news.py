@@ -57,13 +57,13 @@ def processRequest(req):
 	if req.get("result").get("action") != "news.search":
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?&sources=bbc-news"#https://query.yahooapis.com/v1/public/yql?"
-	yql_query = makeYqlQuery(req)
-	#print (yql_query)
-	if yql_query is None:
-		return {}
-	yql_url = baseurl + yql_query#urlencode({'q': yql_query})# + "&format=json"
-##	result = urlopen(yql_url).read()
-	#print(yql_url)
+##	yql_query = makeYqlQuery(req)
+##	#print (yql_query)
+##	if yql_query is None:
+##		return {}
+##	yql_url = baseurl + yql_query#urlencode({'q': yql_query})# + "&format=json"
+####	result = urlopen(yql_url).read()
+##	#print(yql_url)
 	headers = {'Content-Type': 'application/json','Authorization': 'Bearer {0}'.format("e15bb246cdc445f1ab7761ad4e0b4599")}
 	
 	result = requests.get(baseurl,headers=headers).content.decode('utf-8')
