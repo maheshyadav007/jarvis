@@ -39,12 +39,11 @@ def webhook():
 	req = request.get_json(silent=True, force=True)
 
 	
-	print(5+7)
-	print(req)
+	
 	#print(json.dumps(req, indent=4))
-	print("reqdsdfergf4wg4g56y56yh56h6555")
+	
 	res = processRequest(req)
-	print(res)
+	
 	res = json.dumps(res, indent=4)
 	
 	#res="{"ffe":"edee"}"
@@ -54,7 +53,7 @@ def webhook():
 
 
 def processRequest(req):
-	print("processrequestmjugji")
+	
 	if req.get("result").get("action") != "news.search":
 		return {}
 	baseurl = "https://newsapi.org/v2/top-headlines?"#https://query.yahooapis.com/v1/public/yql?"
