@@ -96,7 +96,7 @@ def makeYqlQuery(req):
 
 def makeWebhookResult(data):
 	article = data.get("articles")
-	if articles is None:
+	if article is None:
 		return {}
 
 	desc1= article[0]
@@ -141,7 +141,7 @@ def makeWebhookResult(data):
 
 	return {
 		"speech": speech,
-                "source": "newsai-webhook",
+		"source": "newsai-webhook",
 		"displayText":speech}
 		#"data":{
 		#},
